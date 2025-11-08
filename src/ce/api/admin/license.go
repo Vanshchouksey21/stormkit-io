@@ -209,11 +209,13 @@ func (l *License) Edition() string {
 
 // Debug prints the license information to the stdout
 func (l *License) Debug() {
+	seats := fmt.Sprintf("%d", l.Seats)
+
 	if l.Seats == -1 {
-		slog.Infof("license active with unlimited seats")
-	} else {
-		slog.Infof("%s license active with %d seats", l.Edition(), l.Seats)
+		seats = "unlimited"
 	}
+
+	slog.Infof("%s license active with %s seats", l.Edition(), seats)
 }
 
 // SetMockLicense returns a mock license for testing purposes only.
