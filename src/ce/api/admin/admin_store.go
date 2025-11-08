@@ -135,18 +135,17 @@ func (s *store) Config(ctx context.Context) (InstanceConfig, error) {
 		cnf.DomainConfig.Dev = utils.NormalizeURL(cnf.DomainConfig.Dev)
 		cnf.DomainConfig.Health = utils.NormalizeURL(cnf.DomainConfig.Health)
 		cnf.DomainConfig.Webhooks = utils.NormalizeURL(cnf.DomainConfig.Webhooks)
-
-		once.Do(func() {
-			slog.Infof("api: %s", cnf.DomainConfig.API)
-			slog.Infof("ui:  %s", cnf.DomainConfig.App)
-			slog.Infof("dev: %s",
-				strings.Replace(
-					strings.Replace(cnf.DomainConfig.Dev, "http://", "http://*.", 1),
-					"https://", "https://*.", 1,
-				))
-
-		})
 	}
+
+	once.Do(func() {
+		slog.Infof("api: %s", cnf.DomainConfig.API)
+		slog.Infof("ui:  %s", cnf.DomainConfig.App)
+		slog.Infof("dev: %s",
+			strings.Replace(
+				strings.Replace(cnf.DomainConfig.Dev, "http://", "http://*.", 1),
+				"https://", "https://*.", 1,
+			))
+	})
 
 	// Ensure AuthConfig is always set, this adds backwards compatibility for instances
 	// that were created before the AuthConfig was added to the InstanceConfig.
