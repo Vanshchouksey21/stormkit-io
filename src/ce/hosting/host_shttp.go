@@ -123,19 +123,6 @@ func WithHost(handler func(*RequestContext) *shttp.Response) shttp.RequestFunc {
 	return func(req *shttp.RequestContext) *shttp.Response {
 		absURL := req.URL().String()
 
-		slog.Debug(slog.LogOpts{
-			Msg:   "incoming request",
-			Level: slog.DL3,
-			Payload: []zap.Field{
-				zap.String("method", req.Method),
-				zap.String("url", absURL),
-				zap.String("host", req.Host),
-				zap.String("remote_addr", req.RemoteAddr()),
-				zap.String("user_agent", req.Header.Get("User-Agent")),
-				zap.String("origin", req.Header.Get("Origin")),
-			},
-		})
-
 		if isCloud && appconf.IsStormkitDevStrict(req.Host) {
 			return &shttp.Response{
 				Redirect: aws.String("https://www.stormkit.io"),
