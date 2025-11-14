@@ -191,4 +191,3 @@ ping -c 1 api.localhost
 ```
 
 After applying this fix, the API proxy will work correctly and the endpoints will return proper responses.
-

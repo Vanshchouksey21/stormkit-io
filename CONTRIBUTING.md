@@ -85,13 +85,7 @@ We love feature suggestions! Please:
    # Edit .env with your local configuration
    ```
 
-3. **Build the application**
-
-   ```bash
-   ./scripts/build.sh
-   ```
-
-4. **Run the application**
+3. **Run the application**
 
    ```bash
    ./scripts/start.sh
