@@ -29,21 +29,23 @@ In addition to the Stormkit's microservices, a PostgreSQL database and a Redis I
 
 ## Local Development
 
-To run Stormkit locally for development purposes:
+To run Stormkit locally:
 
 ### Prerequisites
 
-- Go 1.25+
-- Node.js 24+
-- PostgreSQL 17+
+- Go 1.21+
+- Node.js 22+
+- PostgreSQL 14+
 - Redis 7+
+- [Mise](https://mise.jdx.dev/)
+- [Docker](https://docs.docker.com/get-started/get-docker/)
 
-You can install `go` and `node` using [mise](https://mise.jdx.dev/), which is a polyglot tool version manager.
+You can install `go` and `node` using Mise, which is a polyglot tool version manager.
 
-### Update environment variables
-
-- Copy [.env.example](./.env.example) and create an `.env` file. Provide the missing variables.
-- Generate a 32 random token and set the `STORMKIT_APP_SECRET` environment variable.
+```bash
+# Trust the dependencies specified in `mise.toml` and install them
+mise trust && mise install
+```
 
 ### Running the services
 
@@ -52,12 +54,8 @@ You can install `go` and `node` using [mise](https://mise.jdx.dev/), which is a 
 git clone https://github.com/stormkit-io/stormkit-io.git
 cd stormkit-io
 
-# Trust the dependencies specified in `mise.toml` and install them
-# NOTE: you may need to install mise first: https://mise.jdx.dev/getting-started.html
-mise trust && mise install
-
 # Start all services (includes database setup and migrations)
-./scripts/start.sh
+make dev
 ```
 
 After starting the services:
@@ -168,8 +166,8 @@ echo "127.0.0.1       api.localhost" | sudo tee -a /etc/hosts
 # Verify it resolves correctly
 ping -c 1 api.localhost
 
-# Restart the services
-./scripts/start.sh
+# Start the services
+make dev
 ```
 
 After applying this fix, the API proxy will work correctly and the endpoints will return proper responses.
