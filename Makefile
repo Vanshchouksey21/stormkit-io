@@ -214,6 +214,7 @@ start:
 	$(call wait_for_service,redis,redis-cli ping,Redis)
 	@echo "All services are ready!"
 	go install github.com/mattn/goreman@latest
+	go build -o ./bin/runner ./src/ee/runner
 	goreman start
 
 # Run all tests
